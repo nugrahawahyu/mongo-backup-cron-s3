@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  backup-cron:
+    image: wahyucnugraha/mongo-backup-cron-s3:latest
+    restart: on-failure
+    env_file: .env
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "999k"
+    networks:
+      - backup-cron-network
+
+networks:
+  backup-cron-network:
